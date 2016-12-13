@@ -3,15 +3,7 @@ public class Main {
         Network network = new Network(9, 3, 1);
 
         double[][] inputValues = {
-                {-1},
-                {0},
-                {-1},
-                {-1},
-                {1},
-                {1},
-                {0},
-                {1},
-                {0},
+                {-1, 0, -1, -1, 1, 1, 0, 1, 0}
         };
 
         Matrix input = new Matrix(inputValues);

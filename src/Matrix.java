@@ -29,15 +29,15 @@ public class Matrix {
         return new Matrix(values);
     }
 
-    public double[][] getValues() {
-        return values;
-    }
-
     public int getHeight() {
         return height;
     }
 
     public int getWidth() {
         return width;
+    }
+
+    public double[][] getValues() {
+        return values;
     }
 }

@@ -6,18 +6,34 @@ public class Network {
     private int outputLayerSize;
     private int hiddenLayerSize;
 
-    private Matrix[] weights = new Matrix[2];
+    private int[] layers;
+
+    private Matrix[] weights;
 
     public Network(int inputLayerSize, int hiddenLayerSize, int outputLayerSize) {
         this.inputLayerSize = inputLayerSize;
         this.outputLayerSize = outputLayerSize;
         this.hiddenLayerSize = hiddenLayerSize;
 
-        weights[0] = new Matrix(new double[2][3]);
-        weights[1] = new Matrix(new double[3][1]);
+        weights[0] = new Matrix(new double[inputLayerSize][hiddenLayerSize]);
+        weights[1] = new Matrix(new double[hiddenLayerSize][1]);
+    }
+
+    public Network(int[] layers) {
+        this.layers = layers;
+
+        weights = new Matrix[layers.length - 1];
+
+        for (int i = 0; i < weights.length; i++) {
+            weights[i] = new Matrix(new double[layers[i]][layers[i + 1]]);
+        }
     }
 
     public void forward() {
+
+    }
+
+    public void train(double[] input, double[] output) {
 
     }
 
