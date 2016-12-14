@@ -22,7 +22,7 @@ public class Network {
         return  input;
     }
 
-    public void train(double[] input, double[] output) {
+    public void train(double[][] input, double[][] output) {
 
     }
 
@@ -41,5 +41,18 @@ public class Network {
             }
             weights[i] = new Matrix(values);
         }
+    }
+
+    public double getCost(double[][] input, double[][] output) {
+        double sum = 0;
+        Matrix out = forward(new Matrix(input));
+
+        for (int row = 0; row < out.getHeight(); row++) {
+            for (int col = 0; col < out.getWidth(); col++) {
+                sum += Math.pow(out.getValues()[row][col] - output[row][col], 2) / 2;
+            }
+        }
+
+        return sum;
     }
 }
