@@ -2,25 +2,11 @@
  * Created by yegor on 12/12/16.
  */
 public class Network {
-    private int inputLayerSize;
-    private int outputLayerSize;
-    private int hiddenLayerSize;
-
-    private int[] layers;
-
+//    private int[] layers;
     private Matrix[] weights;
 
-    public Network(int inputLayerSize, int hiddenLayerSize, int outputLayerSize) {
-        this.inputLayerSize = inputLayerSize;
-        this.outputLayerSize = outputLayerSize;
-        this.hiddenLayerSize = hiddenLayerSize;
-
-        weights[0] = new Matrix(new double[inputLayerSize][hiddenLayerSize]);
-        weights[1] = new Matrix(new double[hiddenLayerSize][1]);
-    }
-
     public Network(int[] layers) {
-        this.layers = layers;
+//        this.layers = layers;
 
         weights = new Matrix[layers.length - 1];
 
@@ -29,8 +15,11 @@ public class Network {
         }
     }
 
-    public void forward() {
-
+    public Matrix forward(Matrix input) {
+        for (int layer = 0; layer < weights.length; layer++) {
+            input = Matrix.multiply(input, weights[layer]).toSigmoid();
+        }
+        return  input;
     }
 
     public void train(double[] input, double[] output) {

@@ -7,12 +7,15 @@ import java.util.Scanner;
  */
 public class Trainer {
     private int[][][] trainingData; // game, move, location
+    private int[] winners;
 
     public Trainer() {
         trainingData = readTrainingData();
 
+        winners = new int[trainingData.length];
+
         for (int game = 0; game < trainingData.length; game++) {
-            int winner = getWinner(trainingData[game][8]);
+            winners[game] = getWinner(trainingData[game][8]);
         }
     }
 

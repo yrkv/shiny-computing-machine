@@ -40,4 +40,14 @@ public class Matrix {
     public double[][] getValues() {
         return values;
     }
+
+    public Matrix toSigmoid() {
+        for (int i = 0; i < values.length; i++) {
+            for (int j = 0; j < values[0].length; j++) {
+                values[i][j] = 1/(1+Math.exp(-values[i][j]));
+            }
+        }
+
+        return new Matrix(values);
+    }
 }
