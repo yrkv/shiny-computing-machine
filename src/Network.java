@@ -6,7 +6,7 @@ public class Network {
     private Matrix[] weights;
 
     public Network(int[] layers) {
-//        this.layers = layers;
+//        this.layers = layers; // this may be necessary for some of the backpropagation stuff.
 
         weights = new Matrix[layers.length - 1];
 
@@ -22,8 +22,16 @@ public class Network {
         return  input;
     }
 
-    public void train(double[][] input, double[][] output) {
+    public void train(Matrix input, Matrix output) {
+        for (int i = 0; i < weights.length; i++) {
+            Matrix guess = forward(input);
 
+            Matrix error = Matrix.add(Matrix.scalarMultiply(-1, output), guess);
+
+            Matrix backpropagatingError = Matrix.scalarMultiply(error, weights[i].toSigmoidPrime());
+
+            Matrix aaa = Matrix.multiply()
+        }
     }
 
     public Matrix[] getWeights() {
@@ -43,6 +51,8 @@ public class Network {
         }
     }
 
+    // badly named. The function name doesn't give any info. You will have no idea what "cost" is supposed to be.
+    // also need to shift away from using double[][] and just use the Matrix class.
     public double getCost(double[][] input, double[][] output) {
         double sum = 0;
         Matrix out = forward(new Matrix(input));
